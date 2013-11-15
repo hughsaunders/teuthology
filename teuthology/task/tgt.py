@@ -26,13 +26,14 @@ def start_tgt_remotes(ctx, start_tgtd):
             if _id in start_tgtd:
                 if not rem in tgtd_list:
                     tgtd_list.append(rem)
+                    size = ctx.config.get('image_size', 10240)
                     rem.run(
                         args=[
                             'rbd',
                             'create',
                             'iscsi-image',
                             '--size',
-                            '500',
+                            str(size),
                     ])
                     rem.run(
                         args=[
